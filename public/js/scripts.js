@@ -1,26 +1,34 @@
-       // اسکرول نرم
-       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+const createAccountRedirectBtn = document.querySelector(
+  ".create_account_redirect-btn"
+);
+const form = document.querySelector(".form");
 
-    // انیمیشن هنگام اسکرول
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    });
+const changeFormContent = () => {
+  form.innerHTML = "";
 
-    document.querySelectorAll('.project-card, .skill-item').forEach((el) => {
-        el.style.opacity = 0;
-        el.style.transform = 'translateY(50px)';
-        el.style.transition = '1s all';
-        observer.observe(el);
-    });
+  form.insertAdjacentHTML(
+    "beforeend",
+    `<h2 class="form-title">Sign up</h2>
+        <div class="form-input-1">
+          <label class="form-label" for="text">username</label>
+          <br />
+          <input class="form-input" type="text" name="uid" id="text" />
+        </div>
+        <div class="form-input-2">
+          <label class="form-label" for="password">password</label>
+          <br />
+          <input class="form-input" type="password" name="pwd"/>
+        </div>
+
+        <div class="h-20 flex justify-center content-center flex-col">
+          <label class="form-label" for="password">Email</label>
+          <input class="form-input" type="password" name="pwd"/>
+        </div>
+
+        <button class="form-submit-btn " type="submit" name="submit">
+          Sign up
+        </button>`
+  );
+};
+
+createAccountRedirectBtn.addEventListener("click", changeFormContent);
