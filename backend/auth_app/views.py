@@ -10,7 +10,6 @@ def login_page(request):
     
     if request.method == 'POST':
         if 'register' in request.POST:
-            # ثبت نام
             username = request.POST.get('username', '').strip()
             password = request.POST.get('password', '').strip()
             email = request.POST.get('email', '').strip()
@@ -30,7 +29,6 @@ def login_page(request):
                     )
                     return redirect(f'/main/?username={username}')
         else:
-            # لاگین
             username = request.POST.get('username', '').strip()
             password = request.POST.get('password', '').strip()
             
@@ -46,7 +44,6 @@ def login_page(request):
                 except CustomUser.DoesNotExist:
                     error = 'نام کاربری یا رمز عبور اشتباه است'
     
-    # بررسی اینکه آیا باید فرم ثبت نام نمایش داده شود
     if request.method == 'GET' and 'register' in request.GET:
         is_register = True
     
